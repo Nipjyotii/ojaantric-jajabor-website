@@ -1,0 +1,52 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user information and preferences.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique ID of the user." },
+        "displayName": { "type": "string", "description": "The user's display name." },
+        "email": { "type": "string", "format": "email", "description": "The user's email address." },
+        "photoURL": { "type": "string", "format": "uri", "description": "The user's profile photo URL." },
+        "role": { "type": "string", "enum": ["admin", "user"], "description": "The user's role." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the profile was created." }
+      },
+      "required": ["uid", "email"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Stores travel booking requests.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The ID of the user who made the booking." },
+        "name": { "type": "string", "description": "Contact name for the booking." },
+        "email": { "type": "string", "format": "email", "description": "Contact email." },
+        "phone": { "type": "string", "description": "Contact phone number." },
+        "packageTitle": { "type": "string", "description": "The title of the selected package." },
+        "travelers": { "type": "integer", "description": "Number of travelers." },
+        "startDate": { "type": "string", "format": "date", "description": "Travel start date." },
+        "endDate": { "type": "string", "format": "date", "description": "Travel end date." },
+        "pickup": { "type": "string", "description": "Pickup location." },
+        "specialRequests": { "type": "string", "description": "Additional requirements." },
+        "vehicleType": { "type": "string", "description": "Selected vehicle type." },
+        "stayPreference": { "type": "string", "description": "Selected stay preference." },
+        "guideRequired": { "type": "string", "description": "Whether a guide is required." },
+        "totalAmount": { "type": "number", "description": "Total amount paid." },
+        "status": { "type": "string", "enum": ["pending", "confirmed", "cancelled"], "description": "Current status of the booking." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the booking was created." }
+      },
+      "required": ["uid", "name", "email", "phone", "packageTitle", "travelers", "startDate", "totalAmount"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Collection of user profiles."
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Collection of booking requests."
+    }
+  }
+}
