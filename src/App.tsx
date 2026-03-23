@@ -337,9 +337,9 @@ const QuickEnquiryForm = ({ initialPackage = "" }: { initialPackage?: string }) 
       phone: data.phone as string,
       packageTitle: packageTitle,
       travelers: Number(data.travelers),
-      travelDate: data.travelDate as string,
-      message: data.message as string || "",
-      type: "enquiry",
+      startDate: data.travelDate as string,
+      specialRequests: data.message as string || "",
+      totalAmount: 0,
       status: "pending",
       createdAt: new Date().toISOString()
     };
@@ -577,7 +577,7 @@ const MyBookings = ({ onClose }: { onClose: () => void }) => {
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
                   <div>
                     <p className="text-secondary text-xs uppercase font-bold mb-1">Travel Date</p>
-                    <p className="text-primary font-medium">{new Date(booking.travelDate).toLocaleDateString()}</p>
+                    <p className="text-primary font-medium">{(booking.startDate || booking.travelDate) ? new Date(booking.startDate || booking.travelDate).toLocaleDateString() : "—"}</p>
                   </div>
                   <div>
                     <p className="text-secondary text-xs uppercase font-bold mb-1">Travelers</p>
