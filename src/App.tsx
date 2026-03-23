@@ -337,9 +337,9 @@ const QuickEnquiryForm = ({ initialPackage = "" }: { initialPackage?: string }) 
       phone: data.phone as string,
       packageTitle: packageTitle,
       travelers: Number(data.travelers),
-      travelDate: data.travelDate as string,
-      message: data.message as string || "",
-      type: "enquiry",
+      startDate: data.startDate as string,
+      specialRequests: data.specialRequests as string || "",
+      totalAmount: 0,
       status: "pending",
       createdAt: new Date().toISOString()
     };
@@ -434,7 +434,7 @@ const QuickEnquiryForm = ({ initialPackage = "" }: { initialPackage?: string }) 
             <label className="text-xs font-bold text-secondary uppercase ml-2">Travel Date</label>
             <input 
               type="date" 
-              name="travelDate" 
+              name="startDate" 
               required 
               className="w-full px-6 py-4 rounded-2xl bg-white border border-black/5 focus:outline-none focus:ring-2 focus:ring-primary transition-all" 
             />
@@ -453,7 +453,7 @@ const QuickEnquiryForm = ({ initialPackage = "" }: { initialPackage?: string }) 
           </div>
         </div>
         <textarea 
-          name="message" 
+          name="specialRequests" 
           placeholder="Special Requirements or Message" 
           rows={4} 
           className="w-full px-6 py-4 rounded-2xl bg-white border border-black/5 focus:outline-none focus:ring-2 focus:ring-primary transition-all"
